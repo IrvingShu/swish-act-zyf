@@ -40,7 +40,7 @@ class SwishAct(mx.operator.CustomOp):
         x = in_data[0]
         y = out_data[0]
         dy = out_grad[0]
-        dx = y * self._beta + self._x_sig*(1.0 - y * self._beta)
+        dx = dy * (y * self._beta + self._x_sig*(1.0 - y * self._beta))
         self.assign(in_grad[0], req[0], dx)
 
 @mx.operator.register("SwishAct")  # register with name "SwishAct"
